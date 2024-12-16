@@ -3,7 +3,7 @@ FROM node:20-slim as builder
 
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install --legacy-peer-deps
 COPY . .
 RUN npm run build
 
@@ -15,17 +15,11 @@ COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/public ./public
 
-# Install only production dependencies
-RUN npm install --production
+RUN npm install --production --legacy-peer-deps
 
-# Add runtime configuration
 ENV NODE_ENV=production
 ENV PORT=3000
 
 EXPOSE 3000
 
-# Add start script to package.json
-RUN npm pkg set scripts.start="remix-serve ./build/server/index.js" && \
-    npm install @remix-run/serve
-
-CMD ["npm", "start"]
+CMD ["node", "./build/server/index.js"]
