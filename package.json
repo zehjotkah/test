@@ -11,6 +11,7 @@
     "@remix-run/node": "2.15.0",
     "@remix-run/react": "2.15.0",
     "@remix-run/server-runtime": "2.15.0",
+    "@remix-run/serve": "2.15.0",
     "@webstudio-is/react-sdk": "0.193.0",
     "@webstudio-is/sdk-components-react-radix": "0.193.0",
     "@webstudio-is/sdk-components-react-remix": "0.193.0",
